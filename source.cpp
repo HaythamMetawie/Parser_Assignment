@@ -181,12 +181,13 @@ private:
 
          void match (string s)
         {
-          cout << "new token " << s << " & " << sr->values.at(i) << endl;
-          if (s == sr->values.at(i))
-          {
-              i++;
-          }
-
+			 if (s == sr->values.at(i) && i != sr->values.size())
+			 {
+				 cout << "new token " << s << " & " << sr->values.at(i) << endl;
+				 i++;
+			 }
+			 else exit(1);
+		  
         }
        
 
@@ -316,9 +317,11 @@ public:
 		
 		void program()
 		{
-			stmt_seq();
-			//treeNode root = new treeNode("Program");
 			cout << "Start Parsing." << endl;
+			//treeNode root = new treeNode("Program");
+			stmt_seq();
+			
+			
 		}
 };
 
@@ -342,6 +345,6 @@ int main() {
     sr->getToken(code);
     parser *pr = parser::get_inst();
 	pr->program();
-	//system("pause");
+	system("pause");
     return 0;
 }
