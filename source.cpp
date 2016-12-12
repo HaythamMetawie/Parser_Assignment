@@ -186,7 +186,7 @@ private:
 				 cout << "new token " << s << " & " << sr->values.at(i) << endl;
 				 i++;
 			 }
-			 else exit(1);
+			 if (i == sr->values.size()) i = 0;
 		  
         }
        
@@ -210,7 +210,7 @@ private:
                 //else if (sr->values.at(i) == ":=") assign_stmt();
                 else if (sr->values.at(i) == "write") write_stmt();
                 else if (sr->values.at(i) == "read") read_stmt();
-				else if (sr->values.at(i) == "identifier") assign_stmt();
+		else if (sr->values.at(i) == "identifier") assign_stmt();
         }
 
         void if_stmt()
@@ -235,8 +235,7 @@ private:
         {
             match("identifier");
             match("assign");
-  
-			exp();
+	    exp();
         }
 		
         void read_stmt()
